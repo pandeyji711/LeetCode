@@ -15,7 +15,7 @@ I commit to solving and uploading a new problem every day. This not only helps m
 Each folder in this repository corresponds to a specific problem. Inside, you'll find the following:
 
 - `README.md`: A detailed explanation of the problem, my approach, and the solution.
-- `solution.cpp`: The C++ code for my solution.
+- `"function name".cpp`: The C++ code for my solution.
 
 ## How to Use This Repository
 
