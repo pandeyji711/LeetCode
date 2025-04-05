@@ -44,19 +44,41 @@ public:
   }
     int characterReplacement(string s, int k) {
         
-        int l=0;
-        int r=s.length();
+        // int l=0;
+        // int r=s.length();
+        // int ans=0;
+        // while(l<=r)
+        // {
+        //       int mid=l+(r-l)/2;
+        //       if(solve(s,k,mid))
+        //       {
+        //         //   cout<<mid<<endl;
+        //               ans=mid;
+        //               l=mid+1;
+        //       }else
+        //       r=mid-1;
+        // }
+         unordered_map<char,int>m;
+        //    int cnt =mid;
         int ans=0;
-        while(l<=r)
+           int l=0;
+           int r=0;
+
+        while(r<s.length())
         {
-              int mid=l+(r-l)/2;
-              if(solve(s,k,mid))
-              {
-                //   cout<<mid<<endl;
-                      ans=mid;
-                      l=mid+1;
-              }else
-              r=mid-1;
+                m[s[r]]++;
+                 
+                 while(l<r&&!possible(m,k))
+                 {
+                     m[s[l]]--;
+                   if(m[s[l]]<=0)
+                   m.erase(s[l]);
+                   l++;
+                 }
+                 if(r>=s.length())break;
+                 ans=max(ans,r-l+1);
+                 r++;
+                 
         }
         return ans;
     }
