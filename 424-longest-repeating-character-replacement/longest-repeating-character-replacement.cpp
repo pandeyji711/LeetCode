@@ -9,7 +9,7 @@ public:
                 maxx=max(maxx,a1.second);
                 sum+=a1.second;
           }
-           cout<<sum<<"k"<<maxx<<" ";
+        //    cout<<sum<<"k"<<maxx<<" ";
           if(sum-maxx<=k)return true;
           return false;
   }
@@ -52,7 +52,7 @@ public:
               int mid=l+(r-l)/2;
               if(solve(s,k,mid))
               {
-                  cout<<mid<<endl;
+                //   cout<<mid<<endl;
                       ans=mid;
                       l=mid+1;
               }else
