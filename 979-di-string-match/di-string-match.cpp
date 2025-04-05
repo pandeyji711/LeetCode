@@ -2,11 +2,7 @@ class Solution {
 public:
     vector<int> diStringMatch(string s) {
         vector<int>ans(s.length()+1);
-        vector<int>v;
-        for(int i=0;i<=s.length();i++)
-        {
-               v.push_back(i);
-        }
+      
         // int num=0;
         int l=0;
         int r=s.length();
@@ -16,15 +12,15 @@ public:
         {
               if(s[i]=='I')
               {
-                   ans[i]=v[l];
+                   ans[i]=l;
                    l++;
               }else
               {
-                     ans[i]=v[r];
+                     ans[i]=r;
                      r--;
               }
         }
-        ans[s.length()]=v[r];
+        ans[s.length()]=r;
         return ans;
     }
 };
