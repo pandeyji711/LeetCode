@@ -40,7 +40,7 @@ public:
                      
                       if(pq.size()>1&&pq.top()==i)
                       {
-                           cout<<i<<"j"<<pq.size()<<" ";
+                          
                             ans.push_back({st,i});
                             pq.pop();
 
