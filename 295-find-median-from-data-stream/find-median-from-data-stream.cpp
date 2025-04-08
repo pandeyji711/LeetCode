@@ -9,7 +9,7 @@ public:
     
     void addNum(int num) {
        n++;
-       cout<<pqmax.size()<<" "<<pqmin.size()<<endl;
+    //    cout<<pqmax.size()<<" "<<pqmin.size()<<endl;
          if(pqmax.size()==0)
          pqmax.push(num);
          
