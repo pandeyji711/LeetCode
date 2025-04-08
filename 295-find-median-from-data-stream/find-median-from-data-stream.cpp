@@ -69,7 +69,7 @@ public:
         //    cout<<"j";
         
             double mid=(double)pqmax.top();
-             cout<<mid<<"k";
+            //  cout<<mid<<"k";
             return mid;
         }
     }
