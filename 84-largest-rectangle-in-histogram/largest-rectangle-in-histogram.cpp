@@ -32,12 +32,6 @@ public:
                    st1.push(i);
           }
 
-
-
-    for(int i=0;i<n;i++)
-    {
-          cout<<ls[i]<<" ";
-    }
 int ans=0;
        for(int i=0;i<n;i++)
        {
