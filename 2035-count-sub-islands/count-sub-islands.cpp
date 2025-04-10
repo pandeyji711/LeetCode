@@ -5,7 +5,7 @@ public:
                       queue<pair<int,int>>q;
                   q.push({x,y});
                   vis[x][y]=1;
-    bool what=true;
+                  bool what=true;
                   while(!q.empty())
                   {
                               int n2=q.size();
@@ -65,7 +65,7 @@ public:
                       {
 
                         // cout<<"j";
-                        cout<<i<<" "<<j<<endl;
+                        // cout<<i<<" "<<j<<endl;
 
                         ans++;
                       }
