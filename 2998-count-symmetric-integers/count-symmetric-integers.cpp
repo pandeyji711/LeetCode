@@ -1,6 +1,6 @@
 class Solution {
 public:
-  bool ch(int n)
+  bool ch(int &n)
   {
         string str=to_string(n);
         int le=str.length();
