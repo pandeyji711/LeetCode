@@ -23,7 +23,20 @@ public:
         {
                if(nums[i]==key)
                {
-                    mark(vis,i,k);
+                       //left
+            int left=max(0,i-k);
+          for(int l=i;l>=left;l--)
+          {
+
+               vis[l]=1;
+          }
+          //right
+         int n=vis.size()-1;
+          int right=min(n,i+k);
+          for(int l=i+1;l<=right;l++)
+          {
+              vis[l]=1;
+          }
                }
         }
         vector<int>ans;
