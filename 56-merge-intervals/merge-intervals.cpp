@@ -1,14 +1,10 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        // int st=INT_MAX;
-        // for(int i=0;i<intervals.size();i++)
-        // {
-        //         st=min(st,intervals[i][0]);
-        // }
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+       
+        queue<pair<int,int>>pq;
         vector<int>v;
-
+       sort(intervals.begin(),intervals.end());
  for(int i=0;i<intervals.size();i++)
         {
                 pq.push({intervals[i][0],intervals[i][1]});
@@ -22,9 +18,9 @@ public:
        vector<vector<int>>ans;
        for(int i=0;i<v.size();i++)
        {
-                  while(!pq.empty()&&pq.top().first<=v[i])
+                  while(!pq.empty()&&pq.front().first<=v[i])
                   {
-                          pq1.push(pq.top().second);
+                          pq1.push(pq.front().second);
                     
                           if(st==-1)
                              st=v[i];
