@@ -10,18 +10,18 @@ public:
                 long long cnt=0;
             while(r<nums.size())
             {
-                    long long y1=1LL*(m[nums[r]])*(m[nums[r]]-1)/2;
+                    // long long y1=1LL*(m[nums[r]])*(m[nums[r]]-1)/2;
                            m[nums[r]]++;
-                           long long z1=1LL*(m[nums[r]])*(m[nums[r]]-1)/2;
-                             cnt=cnt+abs(y1-z1);
+                        //    long long z1=1LL*(m[nums[r]])*(m[nums[r]]-1)/2;
+                             cnt=cnt+ m[nums[r]]-1;
                      while(cnt>=k)
                      {
                         //  cout<<cnt<<" ";
                            ans+=(n-r);
-                           long long y=1LL*(m[nums[l]])*(m[nums[l]]-1)/2;
+                        //    long long y=1LL*(m[nums[l]])*(m[nums[l]]-1)/2;
                            m[nums[l]]--;
-                           long long z=1LL*(m[nums[l]])*(m[nums[l]]-1)/2;
-                           cnt=cnt-abs(y-z);
+                        //    long long z=1LL*(m[nums[l]])*(m[nums[l]]-1)/2;
+                           cnt=cnt-m[nums[l]];
                           
                            l++;
                      }
