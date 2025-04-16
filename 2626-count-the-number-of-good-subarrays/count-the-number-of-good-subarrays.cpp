@@ -1,17 +1,6 @@
 class Solution {
 public:
-  bool ch( unordered_map<int,int>&m,int k)
-  {
-           long long cnt=0;
-           for( auto a1:m)
-           {
-                 int x=a1.second;
-                 cnt+=(x)*(x-1)/2;
-                 if(cnt>=k)return 1;
-           }
-           return cnt>=k;
 
-  }
     long long countGood(vector<int>& nums, int k) {
         int l=0;
         int r=0;
