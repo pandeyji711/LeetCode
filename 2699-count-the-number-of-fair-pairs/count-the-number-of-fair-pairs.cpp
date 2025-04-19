@@ -17,7 +17,7 @@ public:
                    }else
                    elements=it-nums.begin();
                 //    cout<<elements<<" ";
-                 cout<<elements<<" "<<i<<" "<<endl;
+                //  cout<<elements<<" "<<i<<" "<<endl;
                     low+=elements;
 
               
@@ -37,7 +37,7 @@ public:
                        upr+=ele;
                 }
         }
-        cout<<low<<" "<<upr;
+        // cout<<low<<" "<<upr;
         long long  n=nums.size();
         long long total=n*(n-1)/2-(low+upr);
         return total; 
