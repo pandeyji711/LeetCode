@@ -12,14 +12,16 @@
 class Solution {
 public:
     // vector<TreeNode*>ans;
-  
+     map<pair<int,int>,vector<TreeNode*>>dp;
      vector<TreeNode*> solve(int n,int str,int end)
     {
                  vector<TreeNode*> result;
         if (str > end) {
             result.push_back(nullptr);  // Empty tree
-            return result;
+            return dp[{str,end}]= result;
         }
+        if(dp.find({str,end})!=dp.end())
+        return dp[{str,end}];
                 
                  for(int k=str;k<=end;k++){
                   vector<TreeNode*>left=solve(n,str,k-1);
@@ -37,7 +39,7 @@ public:
     
 
                  }
-                 return result;
+                 return dp[{str,end}]=result;
     }
     vector<TreeNode*> generateTrees(int n) {
     
