@@ -6,7 +6,6 @@ public:
          vector<long long >v(n+1);
          v[0]=lower;
          long long  maxx=v[0];
-         cout<<maxx<<" ";
          long long  minn=v[0];
          for(int i=0;i<differences.size();i++)
          {
@@ -17,7 +16,6 @@ public:
                 if(minn>v[i+1])
                 minn=v[i+1];
          }
-         cout<<maxx<<" "<<minn;
          int ans=upper-maxx+1-(lower-minn);
          if(ans<0)return 0;
          return ans ;
