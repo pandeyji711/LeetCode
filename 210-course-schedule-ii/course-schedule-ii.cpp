@@ -2,7 +2,7 @@ class Solution {
 public:
 stack<int>st;
  
- bool dfs(unordered_map<int,vector<int>>&adj,vector<int>&vis,int root)
+ bool dfs(vector<vector<int>>&adj,vector<int>&vis,int root)
  {
                       vis[root]=1;
                       for( int a1:adj[root])
@@ -20,7 +20,7 @@ stack<int>st;
  }
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         
-  unordered_map<int,vector<int>>adj;
+  vector<vector<int>>adj(numCourses);
    vector<int>deg(numCourses,0);
     for(int i=0;i<prerequisites.size();i++)
     {
