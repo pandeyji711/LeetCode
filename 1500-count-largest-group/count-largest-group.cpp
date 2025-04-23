@@ -11,7 +11,7 @@ public:
          return sum;
   }
     int countLargestGroup(int n) {
-        vector<int>m(54,0);
+        vector<int>m(37,0);
         int maxx=0;
         int cnt=0;
         for(int i=1;i<=n;i++)
