@@ -2,17 +2,18 @@ class Solution {
 public:
 
     int minTimeToReach(vector<vector<int>>& moveTime) {
-        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+        priority_queue<pair<pair<int,int>,pair<int,int>>,vector<pair<pair<int,int>,pair<int,int>>>,greater<pair<pair<int,int>,pair<int,int>>>>pq;
         //time,step,x,y
         vector<vector<int>>cost(moveTime.size(),vector<int>(moveTime[0].size(),INT_MAX));
-        pq.push({0,0,0,0});
+        pq.push({{0,0},{0,0}});
         cost[0][0]=0;
         while(!pq.empty())
         {
-               int x=pq.top()[2];
-               int y=pq.top()[3];
-               int w=pq.top()[0];
-               int step=pq.top()[1];
+              auto &it=pq.top();
+               int x=it.second.first;
+               int y=it.second.second;
+               int w=it.first.first;
+               int step=it.first.second;
                pq.pop();
               // up
                if(x-1>=0)
@@ -25,7 +26,7 @@ public:
                       if(curr<stored)
                       {
                               cost[x-1][y]=curr;
-                              pq.push({curr,step+1,x-1,y});
+                              pq.push({{curr,step+1},{x-1,y}});
                       }
                      
                }
@@ -42,7 +43,7 @@ public:
                       {
                             //    cout<<curr<<" "<<stored<<endl;
                               cost[x+1][y]=curr;
-                              pq.push({curr,step+1,x+1,y});
+                              pq.push({{curr,step+1},{x+1,y}});
                       }
                      
                }
@@ -57,7 +58,7 @@ public:
                       if(curr<stored)
                       {
                               cost[x][y-1]=curr;
-                              pq.push({curr,step+1,x,y-1});
+                              pq.push({{curr,step+1},{x,y-1}});
                       }
                      
                }
@@ -72,7 +73,7 @@ public:
                       if(curr<stored)
                       {
                               cost[x][y+1]=curr;
-                              pq.push({curr,step+1,x,y+1});
+                              pq.push({{curr,step+1},{x,y+1}});
                       }
                      
                }
