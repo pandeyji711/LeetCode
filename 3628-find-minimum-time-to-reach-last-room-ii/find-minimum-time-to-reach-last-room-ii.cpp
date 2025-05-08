@@ -5,7 +5,6 @@ public:
         priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
         //time,step,x,y
         vector<vector<int>>cost(moveTime.size(),vector<int>(moveTime[0].size(),INT_MAX));
-
         pq.push({0,0,0,0});
         cost[0][0]=0;
         while(!pq.empty())
