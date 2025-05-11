@@ -1,5 +1,6 @@
 class Solution {
 public:
+  //cyc dhono undirected graph ka
        bool dfs( unordered_map<int ,vector<int>>&adj,int par,int root,vector<int>&vis,int &cnt)
        {
                        vis[root]=1;
@@ -17,6 +18,7 @@ public:
                          }
                          return false;
        }
+    // componet ke liye score do based on cycle 
          long long scr(queue<int>&q,int siz,int cy)
          {
                     if(siz==1)
@@ -58,8 +60,9 @@ public:
                     if(r<siz){
                     cost[r]=q.front();
                     q.pop();
-         }else if(l>=0)
-         {
+                  } 
+                   else if(l>=0)
+                   {
              cost[l]=q.front();
                     q.pop();
 
@@ -86,7 +89,7 @@ public:
         }
         
         vector<int>vis(n,0);
-        priority_queue<pair<int,int>>pq;
+        priority_queue<pair<int,int>>pq;//priority queue use karna padega kuki cyc ko jada priority dena hai 
         for(int i=0;i<vis.size();i++)
         {
                     if(vis[i]==0)
@@ -112,7 +115,7 @@ public:
                   int cyc=pq.top().first;
                 //   cout<<cnt<<" "<<cyc<<endl;
                   pq.pop();
-                  long long x=scr(q,cnt,cyc) ;
+                  long long x=scr(q,cnt,cyc) ;  //function call
                   ans+=x;
                 //   cout<<ans<<" ";
         }
