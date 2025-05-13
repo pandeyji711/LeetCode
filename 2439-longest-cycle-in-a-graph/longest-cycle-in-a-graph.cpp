@@ -56,10 +56,10 @@ vector<int>pos(edges.size(),0);
                   time++;
                         int cnt=0;
                         int last=-1;
-                          if(solve(adj,i,vis,cnt,last,pos,vis1,time)&&m.find(adj[last][0])==m.end()){
+                          if(solve(adj,i,vis,cnt,last,pos,vis1,time)){
                             // cout<<i<<" "<<cnt<<endl;
                             int y=cnt-pos[adj[last][0]];
-                            cout<<adj[last][0]<<" "<<i<<" "<<y<< endl;
+                            // cout<<adj[last][0]<<" "<<i<<" "<<y<< endl;
                             m[adj[last][0]]=1;
                             ans=max(y,ans);
                           }
