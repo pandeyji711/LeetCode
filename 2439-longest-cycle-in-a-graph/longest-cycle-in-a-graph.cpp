@@ -1,10 +1,10 @@
 class Solution {
 public:
 
-  bool solve( unordered_map<int,vector<int>>&adj,int root,vector<int>&vis,int &cnt,int &last,vector<int>&pos,vector<int>&vis1,int time)
+  bool solve( unordered_map<int,vector<int>>&adj,int root,vector<int>&vis,int &cnt,int &last,vector<int>&pos,vector<int>&vis1,int &time)
   {
       
-            if(vis1[root]<time)
+            if(vis1[root]!=-1&&vis1[root]<time)
             return 0;
              if(vis[root]==1){
                 
@@ -32,22 +32,16 @@ public:
   }
     int longestCycle(vector<int>& edges) {
         unordered_map<int,vector<int>>adj;
-        // vector<int>deg(edges.size(),0);
         for(int i=0;i<edges.size();i++)
         {
                   if(edges[i]!=-1){
                    adj[i].push_back(edges[i]);
-                    //  deg[edges[i]]++/;
                   }
         }
         vector<int>vis(edges.size(),0);
  int ans=-1;
 vector<int>pos(edges.size(),0);
-    //  cout<<solve(adj,3,vis,c,l)<<" ";
-    //  cout<<c;
-    //   vector<int>vis(edges.size(),0);
-     unordered_map<int,int>m;
-     vector<int>vis1(edges.size(),INT_MAX);
+     vector<int>vis1(edges.size(),-1);
      int time=0;
                for(int i=0;i<edges.size();i++)
                {
@@ -57,10 +51,7 @@ vector<int>pos(edges.size(),0);
                         int cnt=0;
                         int last=-1;
                           if(solve(adj,i,vis,cnt,last,pos,vis1,time)){
-                            // cout<<i<<" "<<cnt<<endl;
                             int y=cnt-pos[adj[last][0]];
-                            // cout<<adj[last][0]<<" "<<i<<" "<<y<< endl;
-                            m[adj[last][0]]=1;
                             ans=max(y,ans);
                           }
 
