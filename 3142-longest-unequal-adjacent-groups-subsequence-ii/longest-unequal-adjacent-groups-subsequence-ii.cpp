@@ -13,25 +13,10 @@ public:
             }
             return cnt==1;
    }
-  int solve(vector<string>& words, vector<int>& groups,int ind,int indp,  vector<vector<int>>&dp)
-  {
-           if(ind>=words.size())return 0;
-             //pck
-             if(dp[ind][indp+1]!=-1)
-             return dp[ind][indp+1];
-             int x=0;
-             int y=0;
-             if(indp==-1||groups[ind]!=groups[indp]&&diff(words[ind],words[indp]))
-             {
-                  x=1+solve(words,groups,ind+1,ind,dp);
-             }
-             y=solve(words,groups,ind+1,indp,dp);
-             return  dp[ind][indp+1]= max(x,y);
 
-  }
      
     vector<string> getWordsInLongestSubsequence(vector<string>& words, vector<int>& groups) {
-      vector<vector<int>>dp(words.size()+1,vector<int>(words.size()+1,-1));
+     
       vector<int>dp1(words.size()+1,1);
       vector<int>ind(words.size()+1,-1);
       int ans=1;
