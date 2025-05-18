@@ -55,7 +55,7 @@ public:
      int ans = 0;
      for(int i=0;i<vp.size();i++)
      {
-          cout<<vp[i].second<<" ";
+          
                if(vp[i].second!=nums[i])
                {
                      ans++;
