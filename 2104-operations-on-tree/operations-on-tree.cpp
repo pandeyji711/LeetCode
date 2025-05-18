@@ -1,62 +1,79 @@
+#include <vector>
+#include <queue>
+
 class LockingTree {
 public:
-    vector<int> parent;
-    vector<vector<int>> children;
-    vector<int> lockUser;  // lockUser[i] == 0 means unlocked
+    std::vector<std::vector<int>> children; // Adjacency list
+    std::vector<int> parent;                // Parent of each node
+    std::vector<int> lockUser;              // Lock status: -1 = unlocked, else user ID
 
-    LockingTree(vector<int>& parent) : parent(parent), lockUser(parent.size(), 0) {
-        children.resize(parent.size());
-        for (int i = 0; i < parent.size(); ++i) {
-            if (parent[i] != -1)
+    LockingTree(std::vector<int>& parent) {
+        this->parent = parent;
+        int n = parent.size();
+        lockUser = std::vector<int>(n, -1);
+        children = std::vector<std::vector<int>>(n);
+
+        for (int i = 0; i < n; i++) {
+            if (parent[i] != -1) {
                 children[parent[i]].push_back(i);
+            }
         }
     }
 
     bool lock(int num, int user) {
-        if (lockUser[num] != 0) return false;
+        if (lockUser[num] != -1) return false; // Already locked
         lockUser[num] = user;
         return true;
     }
 
     bool unlock(int num, int user) {
-        if (lockUser[num] == user) {
-            lockUser[num] = 0;
-            return true;
+        if (lockUser[num] != user) return false; // Locked by someone else or already unlocked
+        lockUser[num] = -1;
+        return true;
+    }
+
+    bool hasLockedAncestor(int node) {
+        while (parent[node] != -1) {
+            node = parent[node];
+            if (lockUser[node] != -1) return true;
         }
         return false;
     }
 
+    bool collectLockedDescendants(int node, std::vector<int>& lockedNodes) {
+        std::queue<int> q;
+        q.push(node);
+        bool found = false;
+
+        while (!q.empty()) {
+            int current = q.front();
+            q.pop();
+
+            for (int child : children[current]) {
+                if (lockUser[child] != -1) {
+                    lockedNodes.push_back(child);
+                    found = true;
+                }
+                q.push(child);
+            }
+        }
+        return found;
+    }
+
     bool upgrade(int num, int user) {
-        if (lockUser[num] != 0) return false;
-        if (!areAllAncestorsUnlocked(num)) return false;
+        if (lockUser[num] != -1) return false;          // Node is already locked
+        if (hasLockedAncestor(num) == true) return false; // One of its ancestors is locked
 
-        vector<int> lockedDescendants;
-        getLockedDescendants(num, lockedDescendants);
-
-        if (lockedDescendants.empty()) return false;
+        std::vector<int> lockedDescendants;
+        if (!collectLockedDescendants(num, lockedDescendants)) return false; // No locked descendants
 
         // Unlock all locked descendants
-        for (int node : lockedDescendants)
-            lockUser[node] = 0;
+        for (int node : lockedDescendants) {
+            lockUser[node] = -1;
+        }
 
+        // Lock the current node
         lockUser[num] = user;
         return true;
-    }
-
-private:
-    bool areAllAncestorsUnlocked(int node) {
-        while (parent[node] != -1) {
-            node = parent[node];
-            if (lockUser[node] != 0) return false;
-        }
-        return true;
-    }
-
-    void getLockedDescendants(int node, vector<int>& lockedNodes) {
-        for (int child : children[node]) {
-            if (lockUser[child] != 0)
-                lockedNodes.push_back(child);
-            getLockedDescendants(child, lockedNodes);
-        }
     }
 };
