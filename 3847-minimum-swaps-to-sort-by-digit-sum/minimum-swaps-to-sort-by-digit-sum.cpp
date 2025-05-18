@@ -37,9 +37,6 @@ public:
                m[nums[i]]=i;
                vp.push_back({x,nums[i]});
         }
-        vector<pair<int,int>>vp1;
-        vp1=vp;
-    //   int ans = 0;
 
     sort(vp.begin(), vp.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
         if (a.first < b.first) {
@@ -63,7 +60,7 @@ public:
                      int toind=m[vp[i].second];
                      m[nums[frind]]=toind;
                      m[nums[toind]]=frind;
-                    //    cout<<frind<<" "<<toind<<endl;
+                 
                      swap(nums[frind],nums[toind]);
                }
      }
