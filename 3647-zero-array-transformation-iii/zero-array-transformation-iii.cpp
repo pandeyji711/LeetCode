@@ -21,9 +21,8 @@ public:
                          box.push(pq.top().second);
                          pq.pop();
                  }
-                 int chala=0;
-                 while(!curr.empty()&&curr.top()<=i){
-                          chala++;        
+             
+                 while(!curr.empty()&&curr.top()<=i){      
                  curr.pop();
                  }
                  int diff=nums[i]-curr.size();
@@ -35,10 +34,8 @@ public:
                             box.pop();
                             diff--;
                  }
-                 cout<<nums[i]<<" "<<curr.size()<<endl;
                  if(diff>0)return -1;
-                //  int siz=curr.size();
-                //  ans=max(ans,siz);
+             
 
 
 
