@@ -5,7 +5,6 @@ public:
           priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
           for(int i=0;i<queries.size();i++)
           {
-               int diff=queries[i][0]-queries[i][1];
                pq.push({queries[i][0],queries[i][1]+1});
           }
 
