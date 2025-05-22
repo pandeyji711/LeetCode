@@ -127,7 +127,7 @@ public:
                              }
                     
                     }
-                    cout<<endl;
+                    
                     ans++;
                     if(yes)return ans;
                     }
