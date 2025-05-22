@@ -10,26 +10,26 @@ public:
 
           int ans=0;
         //   int curr=-1;
-           priority_queue<int,vector<int>,greater<int>>curr;
-            priority_queue<int>box;
+           priority_queue<int,vector<int>,greater<int>>curr; //ye track karega ki kite range use hua hai
+            priority_queue<int>box; // issme sab range store hoga with max end point on top 
 
            for(int i=0;i<nums.size();i++)
            {
                  while(!pq.empty()&&pq.top().first<=i)
                  {
-                         box.push(pq.top().second);
+                         box.push(pq.top().second); //fill box
                          pq.pop();
                  }
              
                  while(!curr.empty()&&curr.top()<=i){      
-                 curr.pop();
+                 curr.pop();                            //remove expired range
                  }
-                 int diff=nums[i]-curr.size();
+                 int diff=nums[i]-curr.size();   //required range
                  
                  while(!box.empty()&&diff>0&&box.top()>i)
                  {
-                    ans++;
-                            curr.push(box.top());
+                     ans++;
+                            curr.push(box.top());  //pick range form box greedly (jiska range bada hai)
                             box.pop();
                             diff--;
                  }
