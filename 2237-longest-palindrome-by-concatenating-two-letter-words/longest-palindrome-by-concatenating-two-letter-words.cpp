@@ -2,10 +2,13 @@ class Solution {
 public:
     int longestPalindrome(vector<string>& words) {
         unordered_map<string,int>dm;
+          unordered_map<string,int>sm;
         for(int i=0;i<words.size();i++)
         {
                    if(words[i][0]!=words[i][1])
                   dm[words[i]]++;
+                  if(words[i][0]==words[i][1])
+                  sm[words[i]]++;
         }
         int diff=0;
         unordered_map<string ,int>mvis;
@@ -25,12 +28,7 @@ public:
 
         }
 
-         unordered_map<string,int>sm;
-        for(int i=0;i<words.size();i++)
-        {
-                   if(words[i][0]==words[i][1])
-                  sm[words[i]]++;
-        }
+       
         int same=0;
         int odd=0;
         for(auto a1:sm)
