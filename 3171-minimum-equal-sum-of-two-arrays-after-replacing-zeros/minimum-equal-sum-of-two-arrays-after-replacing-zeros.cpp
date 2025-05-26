@@ -28,7 +28,7 @@ public:
          num2+=znum2;
             if(num1>num2&&znum2==0)
         {
-            //   cout<<"k";
+            
                 return -1;
         }
         if(num1<num2&&znum1==0)
