@@ -1,24 +1,41 @@
 class Foo {
-private:
-binary_semaphore secondReady{0};
-binary_semaphore thirdReady{0};
-
 public:
-    Foo() {}
+   condition_variable cv;
+   mutex mtx; 
+    int chance;
+      Foo() {
+        chance=1;
+    }
 
-    void first(std::function<void()> printFirst) {
+    void first(function<void()> printFirst) {
+        
+        // printFirst() outputs "first". Do not change or remove this line.
+          unique_lock<mutex>lock(mtx);
+          cv.wait(lock,[this]{return chance==1;});
         printFirst();
-        secondReady.release(); // allow second() to run
+        chance=2;
+        cv.notify_all();
     }
 
-    void second(std::function<void()> printSecond) {
-        secondReady.acquire(); // wait for first()
-        printSecond();
-        thirdReady.release(); // allow third() to run
+    void second(function<void()> printSecond) {
+        
+        // printSecond() outputs "second". Do not change or remove this line.
+           unique_lock<mutex>lock(mtx);
+          cv.wait(lock,[this]{return chance==2;});
+       printSecond();
+        chance=3;
+        cv.notify_all();
+       
     }
 
-    void third(std::function<void()> printThird) {
-        thirdReady.acquire(); // wait for second()
-        printThird();
+    void third(function<void()> printThird) {
+        
+        // printThird() outputs "third". Do not change or remove this line.
+           unique_lock<mutex>lock(mtx);
+          cv.wait(lock,[this]{return chance==3;});
+           printThird();
+           chance=0;
+        cv.notify_all();
+       
     }
 };
