@@ -1,79 +1,71 @@
-#include <vector>
-#include <queue>
-
 class LockingTree {
 public:
-    std::vector<std::vector<int>> children; // Adjacency list
-    std::vector<int> parent;                // Parent of each node
-    std::vector<int> lockUser;              // Lock status: -1 = unlocked, else user ID
+    vector<int> parent;
+    unordered_map<int, vector<int>> adj;
+    unordered_map<int, int> lockmap;  // node -> user
 
-    LockingTree(std::vector<int>& parent) {
-        this->parent = parent;
+    LockingTree(vector<int>& parent) : parent(parent) {
         int n = parent.size();
-        lockUser = std::vector<int>(n, -1);
-        children = std::vector<std::vector<int>>(n);
-
         for (int i = 0; i < n; i++) {
-            if (parent[i] != -1) {
-                children[parent[i]].push_back(i);
-            }
+            if (parent[i] != -1)
+                adj[parent[i]].push_back(i);
         }
     }
 
     bool lock(int num, int user) {
-        if (lockUser[num] != -1) return false; // Already locked
-        lockUser[num] = user;
+        if (lockmap.count(num)) return false;
+        lockmap[num] = user;
         return true;
     }
 
     bool unlock(int num, int user) {
-        if (lockUser[num] != user) return false; // Locked by someone else or already unlocked
-        lockUser[num] = -1;
-        return true;
-    }
-
-    bool hasLockedAncestor(int node) {
-        while (parent[node] != -1) {
-            node = parent[node];
-            if (lockUser[node] != -1) return true;
+        if (lockmap.count(num) && lockmap[num] == user) {
+            lockmap.erase(num);
+            return true;
         }
         return false;
     }
 
-    bool collectLockedDescendants(int node, std::vector<int>& lockedNodes) {
-        std::queue<int> q;
-        q.push(node);
-        bool found = false;
+    // Checks if any ancestor is locked
+    bool hasLockedAncestor(int num) {
+        int curr = parent[num];
+        while (curr != -1) {
+            if (lockmap.count(curr)) return true;
+            curr = parent[curr];
+        }
+        return false;
+    }
+
+    // Checks for locked descendants and unlocks them
+    bool unlockDescendants(int num) {
+        bool foundLocked = false;
+        queue<int> q;
+        q.push(num);
 
         while (!q.empty()) {
-            int current = q.front();
+            int node = q.front();
             q.pop();
 
-            for (int child : children[current]) {
-                if (lockUser[child] != -1) {
-                    lockedNodes.push_back(child);
-                    found = true;
+            for (int child : adj[node]) {
+                if (lockmap.count(child)) {
+                    lockmap.erase(child);
+                    foundLocked = true;
                 }
                 q.push(child);
             }
         }
-        return found;
+        return foundLocked;
     }
 
     bool upgrade(int num, int user) {
-        if (lockUser[num] != -1) return false;          // Node is already locked
-        if (hasLockedAncestor(num) == true) return false; // One of its ancestors is locked
+        if (lockmap.count(num)) return false;
+        if (hasLockedAncestor(num)) return false;
 
-        std::vector<int> lockedDescendants;
-        if (!collectLockedDescendants(num, lockedDescendants)) return false; // No locked descendants
+        // Unlock descendants and check if at least one was locked
+        if (!unlockDescendants(num)) return false;
 
-        // Unlock all locked descendants
-        for (int node : lockedDescendants) {
-            lockUser[node] = -1;
-        }
-
-        // Lock the current node
-        lockUser[num] = user;
+        // Lock current node
+        lockmap[num] = user;
         return true;
     }
 };
