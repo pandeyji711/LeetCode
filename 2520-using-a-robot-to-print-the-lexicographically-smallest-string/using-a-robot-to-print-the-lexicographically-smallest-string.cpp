@@ -1,6 +1,6 @@
 class Solution {
 public:
-  bool  check( map<char,int>&m,char &a,int i)
+  bool  check( map<char,int>&m,char &a,int &i)
   {
         for(auto &a1:m)
         {
