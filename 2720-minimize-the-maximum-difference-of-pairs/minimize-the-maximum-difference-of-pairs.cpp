@@ -16,8 +16,9 @@ public:
    }
     int minimizeMax(vector<int>& nums, int p) {
          sort(nums.begin(),nums.end());
+
          int l=0;
-         int r=INT_MAX;
+         int r=abs(nums[0]-nums[nums.size()-1]);
          int ans=0;
          while(l<=r)
          {
