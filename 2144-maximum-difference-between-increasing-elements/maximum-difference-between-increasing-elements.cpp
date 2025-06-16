@@ -6,17 +6,17 @@ public:
         for(int i=0;i<nums.size();i++)
         {
                minn[i+1]=min(minn[i],nums[i]);
-               cout<<minn[i+1]<<" ";
+         
                
         }
-        cout<<endl;
+   
           for(int i=nums.size()-1;i>=0;i--)
         {
                maxx[i+1]=max(maxx[i],nums[i]);
-               cout<<maxx[i+1]<<" ";
+      
                
         }
-        cout<<endl;
+    
         int ans=0;
         for(int i=0;i<nums.size();i++)
         {
