@@ -1,6 +1,6 @@
 class Solution {
 public:
-   bool ch(string s)
+   bool ch(string &s)
    {
      int k=s.length();
          for(int i=0;i<k-1;i++)
