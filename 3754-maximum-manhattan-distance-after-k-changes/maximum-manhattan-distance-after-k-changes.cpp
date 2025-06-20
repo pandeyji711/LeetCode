@@ -14,13 +14,11 @@ int ans=0;
                   x++;
                    if(s[i]=='W')
                   x--;
-                  int ideal=i+1;
-                  int acc=abs(x)+abs(y);
-                //   if(i==5)
-                //   cout<<acc<<endl;
-                  int waste=ideal-acc;
-                   int rec=min(2*k,waste);
-                   ans=max(ans,acc+rec);
+                  int ideal=i+1; //if no oppostion direction ex(n-s,e-w)
+                  int acc=abs(x)+abs(y); //currect manhattan dis
+                  int waste=ideal-acc; 
+                   int rec=min(2*k,waste); // k change the direction so it increase by 2 times 
+                   ans=max(ans,acc+rec);  //track the maximum
            }
            return ans;
     }
