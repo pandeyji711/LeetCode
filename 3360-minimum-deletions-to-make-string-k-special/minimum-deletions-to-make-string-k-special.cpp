@@ -1,14 +1,13 @@
 class Solution {
 public:
- int solve(  vector<int>&v,int k,int val)
+ int solve(vector<int>&v,int k,int val)
  {
      int ansl=0;
-     //-k
-     
         int l=max(0,val-k);
         
           for(int i=0;i<v.size();i++)
           {
+              if(v[i]==0)continue;
                   if(v[i]>=val)
                   {
                     ansl+=(v[i]-val);
@@ -23,6 +22,7 @@ public:
           int r=val+k;
           for(int i=0;i<v.size();i++)
           {
+             if(v[i]==0)continue;
                      if(v[i]>=r)
                      {
                         ansr+=v[i]-r;
@@ -38,21 +38,15 @@ public:
        
  }
     int minimumDeletions(string s, int k) {
-        unordered_map<char,int>m;
+    vector<int>v(26,0);
         for(int i=0;i<s.length();i++)
         {
-              m[s[i]]++;
+              v[s[i]-'a']++;
         }
-        vector<int>v;
-
-        for(auto a1:m)
-        {
-               v.push_back(a1.second);
-        }
-        sort(v.begin(),v.end());
         int ans=INT_MAX;
         for(int i=0;i<v.size();i++)
         {
+              if(v[i]==0)continue;
                int val=v[i];
                ans=min(ans,solve(v,k,val));
 
