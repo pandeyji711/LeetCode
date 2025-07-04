@@ -1,24 +1,6 @@
 class Solution {
 public:
-//    void dfs(string &res,  unordered_map<string,int>&m,int k,int n)
-//    {              
-//             string last=res.substr(res.size()-n+1,n-1);
 
-//             for(int i=0;i<k;i++)
-//             {
-                   
-//                    string tem=last+=to_string(i);
-//                    if(m.find(tem)==m.end())
-//                    {
-//                         m[last]=1;
-//                         res+=to_string(i);
-//                         dfs(res,m,k,n);
-//                    }
-
-//             }
-
-
-//    }
     string crackSafe(int n, int k) {
       unordered_map<string,int>m;
        string str(n,'0');
