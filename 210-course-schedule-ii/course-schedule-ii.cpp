@@ -1,58 +1,64 @@
 class Solution {
-public:
-stack<int>st;
- 
- bool dfs(vector<vector<int>>&adj,vector<int>&vis,int root)
- {
-                      vis[root]=1;
-                      for( int a1:adj[root])
-                      {
-                          if(vis[a1]==1)return true;
-                          if(vis[a1]==0&&dfs(adj,vis,a1))
-                          {
-                              return true;
-                          }
-                          
-                      }
-                  vis[root]=2;
-                      st.push(root);
-                      return false;
- }
-    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        
-  vector<vector<int>>adj(numCourses);
-   vector<int>deg(numCourses,0);
-    for(int i=0;i<prerequisites.size();i++)
+public: 
+    bool iscyc( unordered_map<int,vector<int>>adj,int root,vector<int>&tem,vector<int>&vis)
     {
-                adj[prerequisites[i][0]].push_back(prerequisites[i][1]);
-                // deg[prerequisites[i][1]]++;
+                             if(vis[root]==1)return true;
+                             bool a=false;
+                            
+                             for(int node:adj[root])
+                             {
+                                  if(vis[node]==0)
+                                  {
+                                    a=a||iscyc(adj,node,tem,vis);
+                                  }else if(vis[node]==1)
+                                  return true;
+                             }
+                             vis[root]=2;
+                              tem.push_back(root);
+                             return a;
     }
-    // bool yes=false;
-    //  for(int i=0;i<deg.size();i++)
-    //  {
-    //            if(deg[i]==0){
-    //               yes=true;
-    //               break;
-    //            }
-    //  }
-    //  if(!yes)return {};
-          vector<int>vis(numCourses,0);
-
-          for(int i=0;i<numCourses;i++)
-          {
-                    if(vis[i]==0)
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+         if(prerequisites.size()==0)
+         {
+               vector<int>tem;
+               for(int i=0;i<numCourses;i++)
+               {
+                  tem.push_back(i);
+               }
+               return tem;
+         }
+           unordered_map<int,vector<int>>adj;
+           vector<int>deg(numCourses,0);
+           for(int i=0;i<prerequisites.size();i++)
+           {
+                   deg[prerequisites[i][0]]++;
+                        adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
+           }
+           vector<int>vis(numCourses,0);
+              vector<int>tem;
+            //   priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+            //   for(int i=0;i<numCourses;i++)
+            //   {
+            //         pq.push({deg[i],i});
+            //   }
+              vector<int>ans;
+       
+                  
+                    for(int i=0;i<numCourses;i++)
                     {
-                         if(dfs(adj,vis,i))
-                         return {};
+
+                          if(deg[i]==0)
+                          {
+                            ans.push_back(i);
+                            deg[i]=-1;
+                                  for(int node:adj[i])
+                                  deg[node]--;
+
+                                    i=-1;
+                          }
+                        
                     }
-          }
-          vector<int>ans;
-          while(!st.empty())
-          {
-                 ans.push_back(st.top());
-                 st.pop();
-          }
-          reverse(ans.begin(),ans.end());
-          return ans;
+           vector<int>tempp;
+             return ans.size()==numCourses?ans:tempp;
     }
 };
