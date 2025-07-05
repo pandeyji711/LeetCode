@@ -7,12 +7,12 @@ public:
               v[arr[i]]++;
         }
         int lucky=-1;
-        sort(arr.begin(),arr.end());
-        for(int i=0;i<arr.size();i++)
+        // sort(arr.begin(),arr.end());
+        for(int i=1;i<v.size();i++)
         {
                
-               if(v[arr[i]]==arr[i])
-                  lucky=arr[i];
+               if(v[i]==i)
+                  lucky=i;
         }
         return lucky;
     }
