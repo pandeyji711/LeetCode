@@ -21,7 +21,7 @@ public:
                int re=n%16;
                 if(re<=9)
               {
-                 cout<<re<<" ";
+               
                    s.push_back(re+'0');
                    
               }else {
@@ -67,7 +67,7 @@ public:
                int re=n%36;
                 if(re<=9)
               {
-                 cout<<re<<" ";
+                 
                    s.push_back(re+'0');
                    
               }else {
