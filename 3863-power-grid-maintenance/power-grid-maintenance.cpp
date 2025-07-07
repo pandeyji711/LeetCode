@@ -14,7 +14,7 @@ public:
                  {
                       int r=q.front();
                       q.pop();
-                       for(int node:adj[r])
+                       for(int &node:adj[r])
                        {
                                if(vis[node]==0)
                                {
@@ -48,12 +48,10 @@ public:
                    if(vis[i]==0)
                    {
                        bfs(adj,cm,mpq,com,vis,i);
-                    //    cout<<i<<" ";
                        com++;
                    }
           }
 vector<int>ans;
-//   cout<<mpq[1].empty()<<endl;
    for(int i=0;i<queries.size();i++)
    {
                   if(queries[i][0]==1)
@@ -65,14 +63,13 @@ vector<int>ans;
                        }else{
 
                                 while(!mpq[cm[queries[i][1]]].empty()&&!ov[mpq[cm[queries[i][1]]].top()]){
-                                    // cout<<ov[mpq[cm[queries[i][1]]].front()]<<" ";
 
                                    mpq[cm[queries[i][1]]].pop();
 
 
                                 }
                                
-                                // cout<<mpq[1].empty()<<endl;
+                               
                                if(!mpq[cm[queries[i][1]]].empty())
                                {
                                   ans.push_back(mpq[cm[queries[i][1]]].top());
