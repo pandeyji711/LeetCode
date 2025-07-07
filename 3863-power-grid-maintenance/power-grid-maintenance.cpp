@@ -1,12 +1,12 @@
 class Solution {
 public:
-  void bfs(  unordered_map<int,vector<int>>&adj, unordered_map<int,int>&cm,  unordered_map<int,priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>>&mpq,int &com,vector<int>&vis,int root)
+  void bfs(  unordered_map<int,vector<int>>&adj, unordered_map<int,int>&cm,   unordered_map<int,priority_queue<int,vector<int>,greater<int>>>&mpq,int &com,vector<int>&vis,int root)
   {
            queue<int>q;
            q.push(root);
     vis[root]=1;
     cm[root]=com;
-     mpq[com].push({0,root});
+     mpq[com].push(root);
            while(!q.empty())
            {
                  int n=q.size();
@@ -21,7 +21,7 @@ public:
                                     vis[node]=1;
                                     q.push(node);
                                     cm[node]=com;
-                                    mpq[com].push({0,node});
+                                    mpq[com].push(node);
 
                                }
                        }
@@ -32,8 +32,8 @@ public:
   }
     vector<int> processQueries(int c, vector<vector<int>>& connections, vector<vector<int>>& queries) {
           unordered_map<int,int>cm;
-          unordered_map<int,priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>>mpq;
-        vector<int>ov(c+2,0);
+          unordered_map<int,priority_queue<int,vector<int>,greater<int>>>mpq;
+        vector<int>ov(c+2,1);
           unordered_map<int,vector<int>>adj;
           for(int i=0;i<connections.size();i++)
           {
@@ -48,34 +48,34 @@ public:
                    if(vis[i]==0)
                    {
                        bfs(adj,cm,mpq,com,vis,i);
-                       com++;
                     //    cout<<i<<" ";
+                       com++;
                    }
           }
 vector<int>ans;
-//    cout<<mpq[1].size();
-//   cout<<ov[2]<<endl;
+//   cout<<mpq[1].empty()<<endl;
    for(int i=0;i<queries.size();i++)
    {
                   if(queries[i][0]==1)
                   {
 
-                       if(ov[queries[i][1]]==0)
+                       if(ov[queries[i][1]]==1)
                        {
                             ans.push_back(queries[i][1]);
                        }else{
 
-                                while(!mpq[cm[queries[i][1]]].empty()&&(mpq[cm[queries[i][1]]].top().first!=ov[mpq[cm[queries[i][1]]].top().second]||mpq[cm[queries[i][1]]].top().first==1)){
-                                    // cout<<mpq[cm[queries[i][1]]].top().first<<" "<<ov[queries[i][1]]<<endl;
+                                while(!mpq[cm[queries[i][1]]].empty()&&!ov[mpq[cm[queries[i][1]]].top()]){
+                                    // cout<<ov[mpq[cm[queries[i][1]]].front()]<<" ";
+
                                    mpq[cm[queries[i][1]]].pop();
 
 
                                 }
                                
-                                //  cout<<mpq[cm[queries[i][1]]].size()<<" "<<i<<endl;
-                               if(!mpq[cm[queries[i][1]]].empty()&&mpq[cm[queries[i][1]]].top().first==0)
+                                // cout<<mpq[1].empty()<<endl;
+                               if(!mpq[cm[queries[i][1]]].empty())
                                {
-                                  ans.push_back(mpq[cm[queries[i][1]]].top().second);
+                                  ans.push_back(mpq[cm[queries[i][1]]].top());
                                }else{
                                   ans.push_back(-1);
                                }
@@ -83,8 +83,8 @@ vector<int>ans;
                   }else{
 
 
-                           ov[queries[i][1]]=1;
-                            // mpq[cm[queries[i][1]]].push({});
+                           ov[queries[i][1]]=0;
+                       
 
                   }
 
