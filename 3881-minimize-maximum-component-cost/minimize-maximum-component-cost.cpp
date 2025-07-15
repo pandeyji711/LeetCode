@@ -3,7 +3,7 @@ public:
    void dfs(unordered_map<int,vector<pair<int,int>>>&adj,vector<int>&vis,int root,int &mid)
    {
                       vis[root]=1;
-                      for(auto node:adj[root])
+                      for(auto &node:adj[root])
                       {
                              if(node.second>mid||vis[node.first]==1)continue;
                              dfs(adj,vis,node.first,mid);
