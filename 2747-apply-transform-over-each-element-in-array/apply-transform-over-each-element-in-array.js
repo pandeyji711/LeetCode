@@ -4,6 +4,11 @@
  * @return {number[]}
  */
 var map = function(arr, fn) {
-          return arr.map(fn);
-        //   return arr;
+         let ans= [];
+          arr.forEach((e,i)=>{
+            //   const tem=fn(e,i);/
+                   ans.push(fn(e,i));
+                      
+          });
+          return ans;
 };
