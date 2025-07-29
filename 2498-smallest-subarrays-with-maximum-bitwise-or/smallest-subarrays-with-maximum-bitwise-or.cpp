@@ -24,27 +24,9 @@ public:
               
          }
          vector<int>bits(32,0);
-         int p=0;
-         int siz=0;
-        //  cout<<sum<<endl;
-        //  while(sum)
-        //  {
-        //        if(sum&1)
-        //        {
-        //            m[p]=1;
-        //         //    cout<<p<<endl;
-        //            siz++;
-        //        }
-        //        p++;
-        //        sum=sum>>1;
-        //  }
          int l=0;
          int r=0;
-         int maxx=0;
-         int ind1=0;
-         int ind2=nums.size()-1;
          vector<int>ans;
-         int siz1=0;
          while(r<nums.size())
          {
                    int p1=0;
@@ -81,12 +63,7 @@ public:
 
                   r++;
          }
-        //  if(ans.size()<nums.size())
-        //  while(l<r)
-        //  {
-        //       ans.push_back(r-l);
-        //       l++;
-        //  }
+    
        
          return ans;
     }
