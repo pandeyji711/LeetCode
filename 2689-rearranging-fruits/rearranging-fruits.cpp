@@ -17,7 +17,6 @@ public:
              }
              vector<int>t1;
              vector<int>t2;
-             unordered_map<int,int>tm;
              for( auto a1:summ)
              {
                        if(a1.second%2!=0)return -1;
@@ -25,11 +24,6 @@ public:
                        {
                               
                              int need=m2[a1.first]-summ[a1.first]/2;
-                             tm[minn]+=need;
-                             if(a1.first!=minn)
-                             {
-                                tm[-1]+=need;
-                             }
                             while(need--)
                             {
                                 t2.push_back(a1.first);
@@ -39,11 +33,6 @@ public:
                         else if(m1[a1.first]>m2[a1.first])
                        {
                               int need=m1[a1.first]-summ[a1.first]/2;
-                               tm[minn]+=need;
-                             if(a1.first!=minn)
-                             {
-                                tm[-1]+=need;
-                             }
                                   while(need--)
                             {
                                 t1.push_back(a1.first);
@@ -54,7 +43,6 @@ public:
              }
             sort(t1.begin(),t1.end());
             sort(t2.begin(),t2.end());
-        //   cout<<t1.size()<<" "<<t2.size();
             int lt1=0;
             int rt1=t1.size()-1;
             int lt2=0;
@@ -62,7 +50,6 @@ public:
             long long ans=0;
              while(lt1<=rt1&&lt2<=rt2)
              {
-                // cout<<"k";
                         ans+=min(2LL*minn,1LL*min(t1[lt1],t2[rt2]));
                         lt1++;
                         rt2--;
