@@ -19,14 +19,12 @@ public:
                            ans1=min(ans1,landStartTime[i]+landDuration[i]);
                     }
           }
-    // cout<<earliest_finish_water<<" ";
         //case 2 land -> water
           int earliest_finish_land=INT_MAX;
           for(int i=0;i<landStartTime.size();i++)
           {
                    earliest_finish_land=min(earliest_finish_land,landStartTime[i]+landDuration[i]);
           }
-        //   cout<<earliest_finish_land<<" ";
           for(int i=0;i<waterStartTime.size();i++)
           {
                     if(waterStartTime[i]<=earliest_finish_land)
