@@ -14,12 +14,11 @@ public:
                       }
                       q.push({i,1LL*k*nums[i]});
         }
-        while(!q.empty())
-        {
+    
+        
                 int tem=q.front().first;
                                 ans=min(ans,tem);
-                                q.pop();
-        }
+                  
         return ans==INT_MAX?0:ans;
     }
 };
