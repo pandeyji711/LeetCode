@@ -1,25 +1,25 @@
 class Solution {
 public:
- bool po2(int n)
+unordered_map<string,bool>fm;
+ void po2()
  {
-         if(n<=0)return true;
-         while(n>1)
-         {
-              if(n%2!=0)return false;
-              n=n/2;
-         }
-         return true;
+          long long n=1;
+        while(n<10e+9)
+        {
+              string s=to_string(n);
+              sort(s.begin(),s.end());
+            //   cout<<s<<" ";
+              fm[s]=1;
+              n*=2;      
+        }
+
+
  }
     bool reorderedPowerOf2(int n) {
         string str=to_string(n);
         sort(str.begin(),str.end());
-        do{
-            if(str[0]=='0')continue;
-               int n1=stoi(str);
-               if(po2(n1))return true;
-        } while(next_permutation(str.begin(),str.end()));
-
-           return false;
+      po2();
+           return fm.find(str)!=fm.end();
 
     }
 };
