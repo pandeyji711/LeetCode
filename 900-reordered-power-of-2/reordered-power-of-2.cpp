@@ -16,9 +16,6 @@ public:
         do{
             if(str[0]=='0')continue;
                int n1=stoi(str);
-
-
-               cout<<n1<<" ";
                if(po2(n1))return true;
         } while(next_permutation(str.begin(),str.end()));
 
