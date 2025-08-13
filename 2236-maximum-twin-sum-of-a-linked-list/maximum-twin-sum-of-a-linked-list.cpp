@@ -28,27 +28,39 @@ public:
     int pairSum(ListNode* head) {
         ListNode* slow=head;
         ListNode *fast=head;
-        int n=0;
+    
         while(fast)
         {
                slow=slow->next;
                fast=fast->next->next;
-               n++;
+               
 
         } 
-
-      rev(slow);
+     ListNode* curr=slow;
+       ListNode* next=nullptr;
+         ListNode* pre=nullptr;
+         while(curr)
+         {
+               next=curr->next;
+               curr->next=pre;
+               pre=curr;
+               curr=next;
+                            
+         }
+        
+    //   rev(slow);
       int ans=0;
         // n--;
-        while(n--)
+      
+        while(pre)
         {
-             int sum=head->val+newhead->val;
+             int sum=head->val+pre->val;
              if(sum>ans)
              {
                  ans=sum;
              }
              head=head->next;
-             newhead=newhead->next;
+            pre=pre->next;
 
         }
 
