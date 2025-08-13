@@ -7,23 +7,16 @@ vector<long long>p;
   {
           if(n==0)
           return dp[n][ind]=1;
-          if(n<0)
+          if(n<0||ind>=p.size())
           return 0;
           if(dp[n][ind]!=-1)
           return dp[n][ind];
 
           int a=0;
-          for(int i=ind;i<p.size();i++)
-          {
-
-                 long long tem=p[i];
-
-                 if(tem>n)
-                 break;
-
-             a=(a%mod+solve(n-p[i],x,i+1)%mod)%mod;
-          }
-          return dp[n][ind]=a;
+          int b=0;
+          a=solve(n-p[ind],x,ind+1);
+          b=solve(n,x,ind+1);
+          return dp[n][ind]=(a%mod+b%mod)%mod;
   }
     int numberOfWays(int n, int x) {
         memset(dp,-1,sizeof(dp));
