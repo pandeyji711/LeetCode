@@ -36,7 +36,7 @@ public:
                n++;
 
         } 
-        cout<<n;
+
       rev(slow);
       int ans=0;
         // n--;
