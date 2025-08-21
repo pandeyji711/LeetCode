@@ -6,7 +6,7 @@ public:
    {
        if(ind>=nums.size())
        {
-          sort(tem.begin(),tem.end());
+        //   sort(tem.begin(),tem.end());
             if(!m.count(tem)){
             ans.push_back(tem);
                m[tem]=1;
@@ -22,6 +22,7 @@ public:
    }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<int>tem;
+        sort(nums.begin(),nums.end());
         solve(nums,0,tem);
         return ans;
     }
