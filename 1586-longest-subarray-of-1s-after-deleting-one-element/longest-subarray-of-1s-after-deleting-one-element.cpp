@@ -20,9 +20,8 @@ public:
          bool de=false;
          for(int i=0;i<vp.size();i++)
          {
-              if(vp[i].second==1&&ans<vp[i].first){
-                 de=false;
-                 ans=vp[i].first;
+              if(vp[i].second==1){
+                 ans=max(ans,vp[i].first);
 
               }
                   if(i+2<vp.size())
@@ -31,11 +30,10 @@ public:
                        {
                               if(vp[i+1].first==1)
                               {
-                                   if(ans<=vp[i].first+vp[i+2].first)
-                                     {
-                                          ans=vp[i].first+vp[i+2].first;
-                                          de=true;
-                                     }
+                                  
+                                          ans=max(ans,vp[i].first+vp[i+2].first);
+                                         
+                                   
                               }
                        }
                   }
