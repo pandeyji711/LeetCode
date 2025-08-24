@@ -8,7 +8,6 @@ public:
         { 
                 if(dub!=nums[i])
                 {
-                     cout<<cnt<<" "<<dub<<endl;
                       vp.push_back({cnt,dub});
                       cnt=0;
                      
@@ -17,7 +16,6 @@ public:
                 cnt++;
         }
          vp.push_back({cnt,dub});
-         cout<<cnt<<" "<<dub<<endl;
          int ans=0;
          bool de=false;
          for(int i=0;i<vp.size();i++)
