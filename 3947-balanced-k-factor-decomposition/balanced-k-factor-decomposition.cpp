@@ -44,9 +44,7 @@ public:
           }
 
       }
-      sort(div.begin(),div.end());
       vector<int>curr;
-    //    cout<<div.size()<< " ";
     solve(div,k,n,curr);
         return ans;
     }
