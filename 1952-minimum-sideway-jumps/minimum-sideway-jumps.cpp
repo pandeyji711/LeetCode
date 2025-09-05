@@ -7,7 +7,6 @@ public:
               if(dp[ind][l]!=-1)
               return dp[ind][l];
               int a=INT_MAX;
-              int b=INT_MAX;
               int index=ind;
               while(index<obstacles.size()&&obstacles[index]!=l)
               {
