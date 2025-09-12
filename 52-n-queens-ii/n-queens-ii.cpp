@@ -38,10 +38,11 @@ public:
 
 
   }
-  void Nqueen(vector<string>&board,int r,vector<vector<string>>&ans,int n)
+  int ans=0;
+  void Nqueen(vector<string>&board,int r,int n)
   {
            if(r==n){
-                ans.push_back(board);
+              ans++;
                 return ;
            }
            for(int i=0;i<n;i++)
@@ -49,16 +50,16 @@ public:
                    if(safe(board,r,i,n))
                    {
                         board[r][i]='Q';
-                        Nqueen(board,r+1,ans,n);
+                        Nqueen(board,r+1,n);
                          board[r][i]='.';
                    }
            }
   }
     int totalNQueens(int n) {
-           vector<vector<string>>ans;
+          
         vector<string>bord(n,string(n,'.'));
         // for(int i=0;i<)
-        Nqueen(bord,0,ans,n);
-        return ans.size();
+        Nqueen(bord,0,n);
+        return ans;
     }
 };
