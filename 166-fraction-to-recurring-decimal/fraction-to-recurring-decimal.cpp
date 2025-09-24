@@ -7,13 +7,13 @@ public:
             if((numerator<0)^(denominator<0))
                ans+="-";
                long long de=llabs((long long )denominator);
-               long long nu=llabs((long long )numerator);
-           ans+=to_string(nu/de);
-            if(nu%de==0)
+               long long num=llabs((long long )numerator);
+           ans+=to_string(num/de);
+            if(num%de==0)
             return ans;
             ans+=".";
            unordered_map<long long,int>m;
-          long long  rem=nu%de;
+          long long  rem=num%de;
              while(rem!=0)
              {
                      if(m.count(rem))
