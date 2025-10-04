@@ -4,21 +4,22 @@ public:
         int l=0;
         int r=height.size()-1;
         int ans=0;
-        while(l<r)
-        {
-              int h=min(height[l],height[r]);
-             ans=max(ans,(int)h*(r-l));
-              if(height[l]<height[r])
-              {
+       while(l<r)
+       {
+               int h=min(height[l],height[r]);
+               ans=max(ans,h*(r-l));
+               if(height[l]<height[r])
+               {
                     l++;
-              }else if(height[l]>height[r])
-              r--;
-              else{
-                    l++;
+               }else if(height[l]>height[r])
+               {
                     r--;
-              }
-
-        }
-        return ans;
+               }else
+               {
+                  l++;
+                  r--;
+               }
+       }
+       return ans;
     }
 };
