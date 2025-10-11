@@ -6,7 +6,6 @@ public:
         int l=0;
         int r=0;
         int ans=0;
-        int rand=INT_MIN;
         vector<bool>keep(arrivals.size(),true);
         while(r<arrivals.size())
         {
