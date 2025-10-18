@@ -5,6 +5,8 @@ public:
          sort(nums.begin(),nums.end());
          int possible=nums[0]-k+1;
        nums[0]=nums[0]-k;
+       unordered_set<int>st;
+       st.insert(nums[0]);
    for(int i=1;i<nums.size();i++)
    {
             if((nums[i]-k)>=possible)
@@ -18,15 +20,11 @@ public:
                   possible=nums[i]+1;
                 //    cout<<"k";
             }
+            st.insert(nums[i]);
    }
     
-set<int>s;
-   for(int i=0;i<nums.size();i++)
-   {
-      
-      s.insert(nums[i]);
-   }
-   return s.size();
+
+   return st.size();
 
     }
 };
