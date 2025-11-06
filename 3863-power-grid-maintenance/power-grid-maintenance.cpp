@@ -1,92 +1,68 @@
 class Solution {
 public:
-  void bfs(  unordered_map<int,vector<int>>&adj, unordered_map<int,int>&cm,   unordered_map<int,priority_queue<int,vector<int>,greater<int>>>&mpq,int &com,vector<int>&vis,int root)
-  {
-           queue<int>q;
-           q.push(root);
-    vis[root]=1;
-    cm[root]=com;
-     mpq[com].push(root);
-           while(!q.empty())
+ void dfs(unordered_map<int,vector<int>>&adj,vector<int>&vis,int root,unordered_map<int,int>&com,int &c, unordered_map<int,priority_queue<int,vector<int>,greater<int>>>&compq)
+ {
+               vis[root]=1;
+               com[root]=c;
+               compq[c].push(root);
+               for(int node:adj[root])
+               {
+                        if(!vis[node])
+                        {
+                              dfs(adj,vis,node,com,c,compq);
+                        }
+               }
+ }
+    vector<int> processQueries(int c, vector<vector<int>>& connections, vector<vector<int>>& queries) {
+        
+           unordered_map<int,vector<int>>adj;
+           for(int i=0;i<connections.size();i++)
            {
-                 int n=q.size();
-                 for(int i=0;i<n;i++)
-                 {
-                      int r=q.front();
-                      q.pop();
-                       for(int &node:adj[r])
-                       {
-                               if(vis[node]==0)
-                               {
-                                    vis[node]=1;
-                                    q.push(node);
-                                    cm[node]=com;
-                                    mpq[com].push(node);
-
-                               }
-                       }
-                 }
+                         adj[connections[i][0]].push_back(connections[i][1]);
+                         adj[connections[i][1]].push_back(connections[i][0]);
 
            }
-
-  }
-    vector<int> processQueries(int c, vector<vector<int>>& connections, vector<vector<int>>& queries) {
-          unordered_map<int,int>cm;
-          unordered_map<int,priority_queue<int,vector<int>,greater<int>>>mpq;
-        vector<int>ov(c+2,1);
-          unordered_map<int,vector<int>>adj;
-          for(int i=0;i<connections.size();i++)
-          {
-                  adj[connections[i][0]].push_back(connections[i][1]);
-                  adj[connections[i][1]].push_back(connections[i][0]);
-
-          }
-          vector<int>vis(c+2,0);
-          int com=1;
-          for(int i=1;i<=c;i++)
-          {
-                   if(vis[i]==0)
-                   {
-                       bfs(adj,cm,mpq,com,vis,i);
-                       com++;
-                   }
-          }
-vector<int>ans;
-   for(int i=0;i<queries.size();i++)
-   {
-                  if(queries[i][0]==1)
+           vector<int>vis(c+1,0);
+           unordered_map<int,int>com;
+           unordered_map<int,priority_queue<int,vector<int>,greater<int>>>compq;
+           int comp=1;
+           for(int i=1;i<=c;i++)
+           {
+                  if(!vis[i])
                   {
-
-                       if(ov[queries[i][1]]==1)
-                       {
-                            ans.push_back(queries[i][1]);
-                       }else{
-
-                                while(!mpq[cm[queries[i][1]]].empty()&&!ov[mpq[cm[queries[i][1]]].top()]){
-
-                                   mpq[cm[queries[i][1]]].pop();
-
-
-                                }
-                               
-                               
-                               if(!mpq[cm[queries[i][1]]].empty())
-                               {
-                                  ans.push_back(mpq[cm[queries[i][1]]].top());
-                               }else{
-                                  ans.push_back(-1);
-                               }
-                       }
-                  }else{
-
-
-                           ov[queries[i][1]]=0;
-                       
-
+                      dfs(adj,vis,i,com,comp,compq);
+                      comp++;
                   }
+           }
+          vector<int>online(c+1,1);
+          vector<int>ans;
+           for(int i=0;i<queries.size();i++)
+           {
+                    if(queries[i][0]==2)
+                    {
+                          online[queries[i][1]]=0;
+                         
 
-   }
-   return ans;
+                    }else{
+                            if(online[queries[i][1]]==1)
+                            {
+                                 ans.push_back(queries[i][1]);
+                            }else{
+                                    
+                                    auto &pq=compq[com[queries[i][1]]];
+                                    while(!pq.empty()&&online[pq.top()]==0)pq.pop();
+                                    if(pq.empty())
+                                    ans.push_back(-1);
+                                    else{
+                                        ans.push_back(pq.top());
+                                    }
+                            }
+                    }
+           }
+           return ans;
+
+
+
 
     }
 };
