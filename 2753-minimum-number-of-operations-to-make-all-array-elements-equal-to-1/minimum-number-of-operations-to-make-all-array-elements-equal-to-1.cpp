@@ -1,8 +1,8 @@
 class Solution {
 public:
-    int solve(vector<int> nums,int ind)
+    int solve(vector<int> nums,int i)
     {
-            int i=ind;
+        
             int cnt=0;
             while(i>=0)
             {
@@ -26,7 +26,6 @@ public:
         int n=nums.size();
          int ones = count(nums.begin(), nums.end(), 1);
 
-        // Case 1: if array already contains ones
         if (ones > 0) 
             return n - ones;
         for(int i=0;i<nums.size()-1;i++)
