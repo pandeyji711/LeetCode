@@ -13,7 +13,7 @@ public:
               a=v1[ind1]+solve(v1,v2,ind1+1,ind2+1);
           }
           else{
-                b=max({b,solve(v1,v2,ind1+1,ind2),solve(v1,v2,ind1,ind2+1)});
+                b=max(solve(v1,v2,ind1+1,ind2),solve(v1,v2,ind1,ind2+1));
           }
           return dp[ind1][ind2]=max(a,b);
   }
