@@ -14,7 +14,6 @@ public:
                   for(int j=0;j<target[0].size();j++)
                   {
 
-                      cout<<mat[i][j]<<" "<<target[j][target[0].size()-1-i]<<endl;
                        if(mat[i][j]!=target[j][target[0].size()-1-i])
                        {
                          
@@ -25,7 +24,7 @@ public:
                   }
              }
              if(ok)return true;
-cnt--;
+                   cnt--;
             }
              return false;
     }
