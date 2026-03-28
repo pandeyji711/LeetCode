@@ -17,6 +17,8 @@ public:
      }
     bool areSimilar(vector<vector<int>>& mat, int k) {
        vector<vector<int>>v=mat;
+       int n=mat[0].size();
+       k=k%n;
        while(k--){
        for(int i=0;i<mat.size();i++)
        {
