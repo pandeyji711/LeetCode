@@ -42,7 +42,7 @@ public:
               n1--;
 
         }
-        cout<<lstep<<" "<<rstep;
+        
      return min(lstep,rstep);
     }
 };
