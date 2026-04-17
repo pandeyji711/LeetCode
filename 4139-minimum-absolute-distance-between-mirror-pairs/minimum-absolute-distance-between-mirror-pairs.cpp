@@ -26,13 +26,11 @@ public:
              if(rm.count(str))
              {
                    ans=min(ans,abs(i-rm[str]));
-                     string str1=rev(nums[i]);
-                     rm[str1]=i;
+                    
 
-             }else{
-                string str1=rev(nums[i]);
-                 rm[str1]=i;
              }
+              string str1=rev(nums[i]);
+                     rm[str1]=i;
         }
     
         return ans==INT_MAX?-1:ans;
