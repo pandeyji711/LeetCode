@@ -21,7 +21,7 @@ public:
                         {
                              vis[x-1][y]=h-(grid[x-1][y]==1?1:0);
                              q.push({x-1,y,vis[x-1][y]});
-                              cout<<vis[x-1][y]<<"U"<<x-1<<" "<<y<<endl;
+                        
                         }
                   }
                    if(x+1<grid.size())
@@ -30,7 +30,7 @@ public:
                         {
                              vis[x+1][y]=h-(grid[x+1][y]==1?1:0);
                              q.push({x+1,y,vis[x+1][y]});
-                             cout<<vis[x+1][y]<<"D"<<x+1<<" "<<y<<endl;
+                             
                         }
                   }
                    if(y-1>=0)
@@ -39,7 +39,7 @@ public:
                         {
                              vis[x][y-1]=h-(grid[x][y-1]==1?1:0);
                              q.push({x,y-1,vis[x][y-1]});
-                             cout<<vis[x][y-1]<<"L"<<x<<" "<<y-1<<endl;
+                            
                              
                         }
                   }
@@ -49,12 +49,12 @@ public:
                         {
                              vis[x][y+1]=h-(grid[x][y+1]==1?1:0);
                              q.push({x,y+1,vis[x][y+1]});
-                              cout<<vis[x][y+1]<<"R"<<x<<" "<<y+1<<endl;
+                              
                         }
                   }
               }
        }
-       cout<<vis[grid.size()-1][grid[0].size()-1];
+  
        return vis[grid.size()-1][grid[0].size()-1]>0?true:false;
     }
 };
