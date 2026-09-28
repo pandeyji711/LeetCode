@@ -20,16 +20,16 @@ public:
                      minn=nums[i];
                   }
         }
-        cout<<maxind<<" "<<minind<<endl;
+    
         //both oposit
         ans=min(ans,min(minind,maxind)+1+(n-max(minind,maxind)));
-        cout<<ans<<endl;
+      
         //both left
         ans=min(ans,min(minind,maxind)+1+(max(minind,maxind)-min(minind,maxind)));
-        cout<<ans<<endl;
+      
         //both right
         ans=min(ans,((n-max(minind,maxind))+max(minind,maxind)-min(minind,maxind)));
-        cout<<n-max(minind,maxind)<<" "<<max(minind,maxind)-min(minind,maxind);
+     
         return ans;
         
     }
