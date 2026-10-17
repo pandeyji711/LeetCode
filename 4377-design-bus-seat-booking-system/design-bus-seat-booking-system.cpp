@@ -7,8 +7,8 @@ public:
 
     BusBooking(int n) {
         
-        vector<vector<int>>a(n,vector<int>(4,0));
-        mat=a;
+      mat=  vector<vector<int>>(n,vector<int>(4,0));
+       
        
         
     }
