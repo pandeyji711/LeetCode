@@ -30,7 +30,7 @@ public:
             // cout<<<<endl;
            ans+=(long long )v1[i].first+nums[v1[i].second]; 
              nums[v1[i].second]=0;
-             cout<<v1[i].first<<endl;
+            //  cout<<v1[i].first<<endl;
              
         }
         for(int i=0;i<nums.size();i++)
